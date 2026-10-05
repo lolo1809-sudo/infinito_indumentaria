@@ -2,11 +2,31 @@ export default function Footer() {
   return (
     <footer className="w-full bg-bg-secondary border-t border-border mt-auto">
       <div className="max-w-6xl mx-auto px-4 py-14">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-10 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Marca y Resumen */}
-          <div className="max-w-md">
+          <div className="max-w-sm">
             <h3 className="text-xl font-extrabold uppercase tracking-widest text-text-primary mb-3">KALMA INDUMENTARIA</h3>
             <p className="text-sm text-text-secondary leading-relaxed">Prendas urbanas diseñadas para el día a día. Estilo streetwear, calidad premium y lanzamientos exclusivos.</p>
+          </div>
+
+          {/* Horarios de Atención */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-text-primary mb-4">Horarios de Atención</h4>
+            <div className="space-y-3 text-sm">
+              <div className="max-w-[240px]">
+                <span className="text-text-secondary block mb-1">Lunes a Viernes</span>
+                <span className="font-semibold text-text-primary block">09:00 - 13:00</span>
+                <span className="font-semibold text-text-primary block">17:30 - 21:30</span>
+              </div>
+              <div className="max-w-[240px]">
+                <span className="text-text-secondary block mb-1">Sabado</span>
+                <span className="font-semibold text-text-primary block">10:00 - 14:00</span>
+              </div>
+              <div className="max-w-[240px]">
+                <span className="text-text-secondary block mb-1">Domingo</span>
+                <span className="text-xs uppercase tracking-wider text-text-secondary/70">Cerrado</span>
+              </div>
+            </div>
           </div>
 
           {/* Redes y Contacto */}
