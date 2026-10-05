@@ -1,14 +1,19 @@
 @import "tailwindcss";
 
+/* Temas de colores*/
 @theme {
   --color-bg-custom: #000000;
-  --color-bg-secondary: #111111;
+  --color-bg-secondary: #0d0d0d;
+  --color-bg-card: #141414;
+  --color-border: #222222;
+
   --color-text-primary: #ffffff;
   --color-text-secondary: #a1a1a1;
+
   --color-accent: #a0b800;
   --color-accent-hover: #bde000;
 
-  --radius-custom: 12px;
+  --radius-custom: 8px;
 }
 
 * {
@@ -17,7 +22,32 @@
   scrollbar-color: var(--color-accent) var(--color-bg-custom);
 }
 
-/* Scrollbar personalizado */
+html {
+  overflow-x: hidden;
+  background-color: var(--color-bg-custom);
+  color: var(--color-text-primary);
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+  overscroll-behavior-y: none;
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  background-color: var(--color-bg-custom);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Scrollbar personalizado vertical */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -34,26 +64,4 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--color-accent-hover);
-}
-
-body {
-  background-color: var(--color-bg-custom);
-  color: var(--color-text-primary);
-  font-family: "Inter", sans-serif;
-  line-height: 1.6;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-}
-
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem;
 }
