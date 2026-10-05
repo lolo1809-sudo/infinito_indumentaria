@@ -10,6 +10,7 @@ export const todosLosProductos = [
     cuotas: "6 pagos sin recargo de $16.333 con Mercado Pago",
     img: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=600&auto=format&fit=crop&q=80",
     destacado: true,
+    talles: ["S", "M", "L", "XL"],
   },
   {
     id: 2,
@@ -21,6 +22,7 @@ export const todosLosProductos = [
     cuotas: "6 pagos sin recargo de $18.333 con Mercado Pago",
     img: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&auto=format&fit=crop&q=80",
     destacado: true,
+    talles: ["M", "L", "XL"],
   },
 
   // ====================== T-SHIRTS ====================================
@@ -34,6 +36,7 @@ export const todosLosProductos = [
     cuotas: "6 pagos sin recargo de $7.500 con Mercado Pago",
     img: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&auto=format&fit=crop&q=80",
     destacado: true,
+    talles: ["S", "M", "L"],
   },
 
   // ====================== PANTS ====================================
@@ -47,6 +50,7 @@ export const todosLosProductos = [
     cuotas: "6 pagos sin recargo de $14.166 con Mercado Pago",
     img: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&auto=format&fit=crop&q=80",
     destacado: true,
+    talles: ["38", "40", "42", "44"],
   },
 
   {
@@ -59,6 +63,7 @@ export const todosLosProductos = [
     cuotas: "6 pagos sin recargo de $14.166 con Mercado Pago",
     img: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&auto=format&fit=crop&q=80",
     destacado: true,
+    talles: ["S", "M", "L"],
   },
 
   {
@@ -71,6 +76,7 @@ export const todosLosProductos = [
     cuotas: "6 pagos sin recargo de $14.166 con Mercado Pago",
     img: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&auto=format&fit=crop&q=80",
     destacado: true,
+    talles: ["M", "L", "XL"],
   },
 ];
 

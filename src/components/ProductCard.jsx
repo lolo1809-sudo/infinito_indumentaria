@@ -1,4 +1,4 @@
-export default function ProductCard({ nombre, categoria, precioLista, precioContado, cuotas, img, className = "" }) {
+export default function ProductCard({ nombre, categoria, precioLista, precioContado, cuotas, img, talles = [], className = "" }) {
   const numeroTelefono = "2646297943";
   const mensaje = `¡Hola! Quería consultar disponibilidad y talles de: ${nombre} (${categoria}) - Precio contado: ${precioContado}.`;
   const whatsappUrl = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
@@ -10,10 +10,24 @@ export default function ProductCard({ nombre, categoria, precioLista, precioCont
         <img src={img} alt={nombre} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
       </div>
 
-      {/* Info del producto */}
+      {/* Info  */}
       <div className="flex flex-col flex-grow text-left">
+        {/* Nombre */}
         <h3 className="text-text-primary font-bold text-lg tracking-wide uppercase">{nombre}</h3>
+        {/* Categoría */}
         <span className="text-text-secondary text-sm mb-2">{categoria}</span>
+
+        {/* Talles */}
+        {talles.length > 0 && (
+          <div className="flex flex-wrap items-center gap-1.5 mb-3">
+            <span className="text-xs text-text-secondary font-medium mr-1">Talles:</span>
+            {talles.map((talle) => (
+              <span key={talle} className="text-xs font-semibold px-2 py-0.5 border border-border-custom text-text-primary rounded">
+                {talle}
+              </span>
+            ))}
+          </div>
+        )}
 
         {/* Precios */}
         <span className="text-text-secondary font-medium line-through text-sm">{precioLista}</span>
