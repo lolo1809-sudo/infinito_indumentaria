@@ -78,7 +78,7 @@ export default function CategoryPage() {
           Categorías
         </button>
 
-        <Link to="/" className="text-xs tracking-widest uppercase font-bold text-text-secondary transition-colors duration-200 hover:!text-[#a0b800]">
+        <Link to="/" className="text-xs tracking-widest uppercase font-bold text-[var(--color-text-secondary)] transition-colors duration-200 hover:text-[var(--color-accent)]">
           ← Volver al inicio
         </Link>
       </div>

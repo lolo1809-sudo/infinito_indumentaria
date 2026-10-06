@@ -2,16 +2,16 @@
 
 /* Temas de colores*/
 @theme {
-  --color-bg-custom: #000000;
-  --color-bg-secondary: #0d0d0d;
-  --color-bg-card: #141414;
-  --color-border: #222222;
+  --color-bg-custom: #f4f0eb;
+  --color-bg-secondary: #e8e2d8;
+  --color-bg-card: #ffffff;
+  --color-border: #dcd4c8;
 
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #a1a1a1;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #666666;
 
-  --color-accent: #a0b800;
-  --color-accent-hover: #bde000;
+  --color-accent: #ff1493;
+  --color-accent-hover: #e00b80;
 
   --radius-custom: 8px;
 }
@@ -40,7 +40,6 @@ body {
 
 a {
   text-decoration: none;
-  color: inherit;
 }
 
 ul {

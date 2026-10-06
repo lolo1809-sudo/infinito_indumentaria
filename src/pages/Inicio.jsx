@@ -15,7 +15,7 @@ export default function Inicio() {
 
       {/* Botón flotante de WhatsApp */}
       <a
-        href="https://wa.me/2646297943?text=Hola!%20Quería%20consultar%20por%20un%20producto."
+        href="https://wa.me/59899384835?text=Hola!%20Quería%20consultar%20por%20un%20producto."
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contactar por WhatsApp"

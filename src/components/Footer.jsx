@@ -5,7 +5,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Marca y Resumen */}
           <div className="max-w-sm">
-            <h3 className="text-xl font-extrabold uppercase tracking-widest text-text-primary mb-3">KALMA INDUMENTARIA</h3>
+            <h3 className="text-xl font-extrabold uppercase tracking-widest text-text-primary mb-3">DALI BOUTIQUE</h3>
             <p className="text-sm text-text-secondary leading-relaxed">Prendas urbanas diseñadas para el día a día. Estilo streetwear, calidad premium y lanzamientos exclusivos.</p>
           </div>
 
@@ -15,12 +15,11 @@ export default function Footer() {
             <div className="space-y-3 text-sm">
               <div className="max-w-[240px]">
                 <span className="text-text-secondary block mb-1">Lunes a Viernes</span>
-                <span className="font-semibold text-text-primary block">09:00 - 13:00</span>
-                <span className="font-semibold text-text-primary block">17:30 - 21:30</span>
+                <span className="font-semibold text-text-primary block">09:00 - 18:00</span>
               </div>
               <div className="max-w-[240px]">
                 <span className="text-text-secondary block mb-1">Sabado</span>
-                <span className="font-semibold text-text-primary block">10:00 - 14:00</span>
+                <span className="font-semibold text-text-primary block">9:00 - 20:00</span>
               </div>
               <div className="max-w-[240px]">
                 <span className="text-text-secondary block mb-1">Domingo</span>
@@ -37,7 +36,7 @@ export default function Footer() {
             <div className="flex items-center gap-4">
               {/* Instagram */}
               <a
-                href="https://www.instagram.com/kalma._ind/"
+                href="https://www.instagram.com/daliboutique.uy/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -52,7 +51,7 @@ export default function Footer() {
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/2646297943?text=Hola!%20Quería%20consultar%20por%20un%20producto."
+                href="https://wa.me/59899384835?text=Hola!%20Quería%20consultar%20por%20un%20producto."
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
@@ -68,7 +67,7 @@ export default function Footer() {
 
         {/* Barra inferior */}
         <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-text-secondary">
-          <p>© {new Date().getFullYear()} Kalma Indumentaria. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} Dali Boutique. Todos los derechos reservados.</p>
           <p className="tracking-wide">Diseñado para la comunidad urbana</p>
         </div>
       </div>
