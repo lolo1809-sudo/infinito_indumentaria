@@ -1,19 +1,35 @@
 @import "tailwindcss";
 
-/* Temas de colores*/
+/* Definición de la fuente personalizada */
+@font-face {
+  font-family: "Luckiest Guy";
+  src: url("/LuckiestGuy-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Temas de colores  */
 @theme {
-  --color-bg-custom: #f4f0eb;
-  --color-bg-secondary: #e8e2d8;
-  --color-bg-card: #ffffff;
-  --color-border: #dcd4c8;
+  /* Fondos  */
+  --color-bg-custom: #121212;
+  --color-bg-secondary: #1a1a1a;
+  --color-bg-card: #1e1e1e;
+  --color-border: #333333;
 
-  --color-text-primary: #1a1a1a;
-  --color-text-secondary: #666666;
+  /* Textos  */
+  --color-text-primary: #e0e0e0;
+  --color-text-secondary: #a0a0a0;
 
-  --color-accent: #ff1493;
-  --color-accent-hover: #e00b80;
+  /* Acentos  */
+  --color-accent: #00a86b;
+  --color-accent-hover: #00cc80;
 
+  /* Otros */
   --radius-custom: 8px;
+
+  /* Tipografía */
+  --font-saraii: "Luckiest Guy", cursive;
 }
 
 * {

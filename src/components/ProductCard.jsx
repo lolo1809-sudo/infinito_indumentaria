@@ -1,5 +1,5 @@
 export default function ProductCard({ nombre, categoria, precioLista, precioContado, cuotas, img, talles = [], className = "" }) {
-  const numeroTelefono = "59899384835";
+  const numeroTelefono = "1161229025";
   const mensaje = `¡Hola! Quería consultar disponibilidad y talles de: ${nombre} (${categoria}) - Precio contado: ${precioContado}.`;
   const whatsappUrl = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
 
