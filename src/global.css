@@ -3,7 +3,7 @@
 /* Definición de la fuente personalizada */
 @font-face {
   font-family: "Luckiest Guy";
-  src: url("/LuckiestGuy-Regular.ttf") format("truetype");
+  src: url("/CaveatBrush-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -12,24 +12,24 @@
 /* Temas de colores  */
 @theme {
   /* Fondos  */
-  --color-bg-custom: #121212;
-  --color-bg-secondary: #1a1a1a;
-  --color-bg-card: #1e1e1e;
-  --color-border: #333333;
+  --color-bg-custom: #ffffff;
+  --color-bg-secondary: #f4f4f5;
+  --color-bg-card: #ffffff;
+  --color-border: #e4e4e7;
 
   /* Textos  */
-  --color-text-primary: #e0e0e0;
-  --color-text-secondary: #a0a0a0;
+  --color-text-primary: #18181b;
+  --color-text-secondary: #71717a;
 
-  /* Acentos  */
-  --color-accent: #00a86b;
-  --color-accent-hover: #00cc80;
+  /* Acentos */
+  --color-accent: #dc2626;
+  --color-accent-hover: #ef4444;
 
   /* Otros */
   --radius-custom: 8px;
 
   /* Tipografía */
-  --font-saraii: "Luckiest Guy", cursive;
+  --font-caveat: "Caveat Brush", cursive;
 }
 
 * {

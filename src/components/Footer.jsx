@@ -5,7 +5,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Marca y Resumen */}
           <div className="max-w-sm">
-            <h3 className="text-xl font-extrabold uppercase tracking-widest text-text-primary mb-3">SARAÍ INDUMENTARIA</h3>
+            <h3 className="text-xl font-extrabold uppercase tracking-widest text-text-primary mb-3">TENUE INDUMENTARIA</h3>
             <p className="text-sm text-text-secondary leading-relaxed">Prendas urbanas diseñadas para el día a día. Estilo streetwear, calidad premium y lanzamientos exclusivos.</p>
           </div>
 
@@ -14,13 +14,9 @@ export default function Footer() {
             <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-text-primary mb-4">Horarios de Atención</h4>
             <div className="space-y-3 text-sm">
               <div className="max-w-[240px]">
-                <span className="text-text-secondary block mb-1">Lunes a Viernes</span>
-                <span className="font-semibold text-text-primary block">08:00 - 13:00</span>
-                <span className="font-semibold text-text-primary block">16:00 - 20:00</span>
-              </div>
-              <div className="max-w-[240px]">
-                <span className="text-text-secondary block mb-1">Sabado</span>
-                <span className="font-semibold text-text-primary block">9:00 - 13:00</span>
+                <span className="text-text-secondary block mb-1">Lunes a Sabado</span>
+                <span className="font-semibold text-text-primary block">10:00 - 13:30</span>
+                <span className="font-semibold text-text-primary block">17:30 - 21:30</span>
               </div>
               <div className="max-w-[240px]">
                 <span className="text-text-secondary block mb-1">Domingo</span>
@@ -37,7 +33,7 @@ export default function Footer() {
             <div className="flex items-center gap-4">
               {/* Instagram */}
               <a
-                href="https://www.instagram.com/saraiindumentaria_/"
+                href="https://www.instagram.com/tenue_sj/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -52,7 +48,7 @@ export default function Footer() {
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/1161229025?text=Hola!%20Quería%20consultar%20por%20un%20producto."
+                href="https://wa.me/2644694044?text=Hola!%20Quería%20consultar%20por%20un%20producto."
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
@@ -68,7 +64,7 @@ export default function Footer() {
 
         {/* Barra inferior */}
         <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-text-secondary">
-          <p>© {new Date().getFullYear()} Saraí Indumentaria. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} Tenue Indumentaria. Todos los derechos reservados.</p>
           <p className="tracking-wide">Diseñado para la comunidad urbana</p>
         </div>
       </div>

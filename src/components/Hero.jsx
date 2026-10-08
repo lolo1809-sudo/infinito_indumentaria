@@ -23,15 +23,15 @@ export default function Hero() {
 
   return (
     <div id="inicio" className="w-full flex flex-col bg-[#f4f0eb] pt-10 md:pt-14">
-      <div className="w-full py-12 flex flex-col items-center justify-center border-b border-[#333333] bg-[#121212] select-none">
+      <div className="w-full py-12 flex flex-col items-center justify-center border-b border-[var(--color-border)] bg-[var(--color-bg-custom)] select-none">
         {/* Título */}
-        <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-[0.15em] text-[#00a86b] font-saraii text-center">Saraii</h1>
+        <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-[0.15em] text-black font-caveat text-center">TENUE</h1>
 
         {/* Subtítulo */}
         <div className="flex items-center gap-4 mt-3 w-full max-w-[420px] px-6">
-          <span className="flex-1 h-[1px] bg-white/40" />
-          <span className="text-xs md:text-sm tracking-[0.45em] text-white font-light uppercase pl-[0.45em]">Indumentaria</span>
-          <span className="flex-1 h-[1px] bg-white/40" />
+          <span className="flex-1 h-[1px] bg-[var(--color-text-secondary)]/40" />
+          <span className="text-xs md:text-sm tracking-[0.45em] text-[var(--color-text-primary)] font-light uppercase pl-[0.45em]">Indumentaria</span>
+          <span className="flex-1 h-[1px] bg-[var(--color-text-secondary)]/40" />
         </div>
       </div>
 
