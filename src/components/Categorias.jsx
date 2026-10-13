@@ -5,20 +5,20 @@ import SectionTitle from "./SectionTitle";
 const categorias = [
   {
     id: 1,
-    nombre: "HOODIES",
-    path: "hoodies",
+    nombre: "BUZOS",
+    path: "buzos",
     img: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=1200&auto=format&fit=crop&q=80",
   },
   {
     id: 2,
-    nombre: "T-SHIRTS",
-    path: "t-shirts",
+    nombre: "REMERAS",
+    path: "remeras",
     img: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=1200&auto=format&fit=crop&q=80",
   },
   {
     id: 3,
-    nombre: "PANTS",
-    path: "pants",
+    nombre: "PANTALONES",
+    path: "pantalones",
     img: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=1200&auto=format&fit=crop&q=80",
   },
   {

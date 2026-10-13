@@ -3,8 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 
 const categoriasSidebar = [
   {
-    nombre: "Hoodies",
-    path: "/categorias/hoodies",
+    nombre: "Buzos",
+    path: "/categorias/buzos",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
         <path d="M20.38 3.46L16 2a8 8 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z" />
@@ -12,8 +12,8 @@ const categoriasSidebar = [
     ),
   },
   {
-    nombre: "T-Shirts",
-    path: "/categorias/t-shirts",
+    nombre: "Remeras",
+    path: "/categorias/remeras",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
         <path d="M21.21 4.89l-4.5-2.5A2 2 0 0 0 15.75 2h-7.5a2 2 0 0 0-.96.24l-4.5 2.5A2 2 0 0 0 2 6.5v2.88a2 2 0 0 0 1.05 1.76L4 11.59V20a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.41l.95-.45A2 2 0 0 0 22 9.38V6.5a2 2 0 0 0-.79-1.61z" />
@@ -22,7 +22,7 @@ const categoriasSidebar = [
   },
   {
     nombre: "Pants",
-    path: "/categorias/pants",
+    path: "/categorias/pantalones",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
         <path d="M6 2h12M6 2v20a2 2 0 0 0 2 2h1.5a2 2 0 0 0 2-2v-9h1v9a2 2 0 0 0 2 2H16a2 2 0 0 0 2-2V2" />

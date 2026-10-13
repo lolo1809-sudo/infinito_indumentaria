@@ -4,7 +4,6 @@ import ProductCard from "../components/ProductCard";
 import SectionTitle from "../components/SectionTitle";
 import EmptyCategory from "../components/EmptyCategory";
 import Sidebar from "../components/Sidebar";
-import { todosLosProductos } from "../productos.js";
 
 // Función auxiliar para convertir "$68.600" -> 68600
 const parsePrecio = (precioStr) => {
@@ -12,16 +11,16 @@ const parsePrecio = (precioStr) => {
   return Number(precioStr?.replace(/[^0-9]/g, "") || 0);
 };
 
-export default function CategoryPage() {
+export default function CategoryPage({ productos = [] }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [tallesSeleccionados, setTallesSeleccionados] = useState([]);
   const [orden, setOrden] = useState("default");
   const { categoria } = useParams();
 
-  // 1. Productos base de la categoría actual
+  // 1. Filtrar los productos del local según la categoría actual de la URL
   const productosCategoria = useMemo(() => {
-    return todosLosProductos.filter((prod) => prod.categoriaSlug === categoria);
-  }, [categoria]);
+    return productos.filter((prod) => prod.categoria_slug === categoria || prod.categoria?.toLowerCase() === categoria?.toLowerCase());
+  }, [productos, categoria]);
 
   // 2. Extraer todos los talles únicos disponibles en esta categoría
   const tallesDisponibles = useMemo(() => {
@@ -39,19 +38,17 @@ export default function CategoryPage() {
     setTallesSeleccionados((prev) => (prev.includes(talle) ? prev.filter((t) => t !== talle) : [...prev, talle]));
   };
 
-  // 3. Filtrar y ordenar
+  // 3. Filtrar por talle y ordenar por precio
   const productosMostrados = useMemo(() => {
-    // Filtrar por talle
     let resultado = productosCategoria.filter((prod) => {
       if (tallesSeleccionados.length === 0) return true;
       return prod.talles?.some((t) => tallesSeleccionados.includes(t));
     });
 
-    // Ordenar por precio (usando precioContado)
     if (orden === "menor-mayor") {
-      resultado.sort((a, b) => parsePrecio(a.precioContado) - parsePrecio(b.precioContado));
+      resultado.sort((a, b) => parsePrecio(a.precio_contado) - parsePrecio(b.precio_contado));
     } else if (orden === "mayor-menor") {
-      resultado.sort((a, b) => parsePrecio(b.precioContado) - parsePrecio(a.precioContado));
+      resultado.sort((a, b) => parsePrecio(b.precio_contado) - parsePrecio(a.precio_contado));
     }
 
     return resultado;
@@ -78,7 +75,7 @@ export default function CategoryPage() {
           Categorías
         </button>
 
-        <Link to="/" className="text-xs tracking-widest uppercase font-bold text-[var(--color-text-secondary)] transition-colors duration-200 hover:text-[var(--color-accent)]">
+        <Link to="../" className="text-xs tracking-widest uppercase font-bold text-[var(--color-text-secondary)] transition-colors duration-200 hover:text-[var(--color-accent)]">
           ← Volver al inicio
         </Link>
       </div>
@@ -141,7 +138,7 @@ export default function CategoryPage() {
         {productosMostrados.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {productosMostrados.map((prod) => (
-              <ProductCard key={prod.id} {...prod} className="flex" />
+              <ProductCard key={prod.id} id={prod.id} nombre={prod.nombre} imgs={prod.imgs} className="flex" />
             ))}
           </div>
         ) : (

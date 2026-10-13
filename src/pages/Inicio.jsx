@@ -4,12 +4,12 @@ import ProductosDestacados from "../components/ProductosDestacados";
 import Categorias from "../components/Categorias";
 import Ubicacion from "../components/Ubicacion";
 
-export default function Inicio() {
+export default function Inicio({ productos }) {
   return (
     <>
       <Header />
       <Hero />
-      <ProductosDestacados />
+      <ProductosDestacados productos={productos} />
       <Categorias />
       <Ubicacion />
 
