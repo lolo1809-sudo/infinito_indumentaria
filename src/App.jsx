@@ -60,13 +60,13 @@ export default function App() {
       <Toaster richColors position="top-right" theme="dark" />
       <ScrollToTop />
       <Routes>
-        {/* Rutas de administración */}
+        {/* Rutas de administrador (privadas) */}
         <Route path="/login" element={<Login />} />
         <Route element={<RutaProtegida />}>
           <Route path="/admin" element={<Admin />} />
         </Route>
 
-        {/* Rutas públicas directas en la raíz */}
+        {/* Rutas públicas */}
         <Route element={<LayoutPublico />}>
           <Route path="/" element={<Inicio productos={productos} />} />
           <Route path="/categorias/:categoria" element={<CategoryPage productos={productos} />} />

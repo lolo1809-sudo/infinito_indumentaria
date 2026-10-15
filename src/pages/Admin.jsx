@@ -6,9 +6,12 @@ import { toast } from "sonner";
 // Lista centralizada de categorías y sus slugs
 const CATEGORIAS = [
   { nombre: "Remeras", slug: "remeras" },
+  { nombre: "Camisas", slug: "camisas" },
+  { nombre: "Abrigos", slug: "abrigos" },
   { nombre: "Pantalones", slug: "pantalones" },
-  { nombre: "Buzos & Camperas", slug: "buzos" },
+  { nombre: "Sastrería", slug: "sastrería" },
   { nombre: "Accesorios", slug: "accesorios" },
+  { nombre: "Piezas de Plata", slug: "piezas_plata" },
 ];
 
 const ESTADO_INICIAL = {

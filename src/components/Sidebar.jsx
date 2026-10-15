@@ -3,29 +3,51 @@ import { Link, useLocation } from "react-router-dom";
 
 const categoriasSidebar = [
   {
-    nombre: "Buzos",
-    path: "/categorias/buzos",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
-        <path d="M20.38 3.46L16 2a8 8 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z" />
-      </svg>
-    ),
-  },
-  {
     nombre: "Remeras",
     path: "/categorias/remeras",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
-        <path d="M21.21 4.89l-4.5-2.5A2 2 0 0 0 15.75 2h-7.5a2 2 0 0 0-.96.24l-4.5 2.5A2 2 0 0 0 2 6.5v2.88a2 2 0 0 0 1.05 1.76L4 11.59V20a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.41l.95-.45A2 2 0 0 0 22 9.38V6.5a2 2 0 0 0-.79-1.61z" />
+        <path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z" />
       </svg>
     ),
   },
   {
-    nombre: "Pants",
+    nombre: "Camisas",
+    path: "/categorias/camisas",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
+        <path d="M6 3h12l4 6-5 3-2-2v8H9v-8l-2 2-5-3 4-6z" />
+        <path d="M9 3v4a3 3 0 0 0 6 0V3" />
+      </svg>
+    ),
+  },
+  {
+    nombre: "Abrigos",
+    path: "/categorias/abrigos",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
+        <path d="M15 3v4a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V3m-4 5l-3 3 2 2 2-2v9h12v-9l2 2 2-2-3-3" />
+      </svg>
+    ),
+  },
+  {
+    nombre: "Pantalones",
     path: "/categorias/pantalones",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
-        <path d="M6 2h12M6 2v20a2 2 0 0 0 2 2h1.5a2 2 0 0 0 2-2v-9h1v9a2 2 0 0 0 2 2H16a2 2 0 0 0 2-2V2" />
+        <path d="M14 2H10a2 2 0 0 0-2 2v18l4-2 4 2V4a2 2 0 0 0-2-2z" />
+      </svg>
+    ),
+  },
+  {
+    nombre: "Sastrería",
+    path: "/categorias/sastreria",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
       </svg>
     ),
   },
@@ -34,8 +56,17 @@ const categoriasSidebar = [
     path: "/categorias/accesorios",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
-        <circle cx="12" cy="12" r="7" />
-        <path d="M12 9v3l1.5 1.5M16.51 17.35l-.35 3.83a2 2 0 0 1-2 1.82H9.83a2 2 0 0 1-2-1.82l-.35-3.83m.01-10.7l.35-3.83A2 2 0 0 1 9.83 1h4.35a2 2 0 0 1 2 1.82l.35 3.83" />
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 8v4l3 3" />
+      </svg>
+    ),
+  },
+  {
+    nombre: "Piezas de Plata",
+    path: "/categorias/piezas_plata",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
       </svg>
     ),
   },

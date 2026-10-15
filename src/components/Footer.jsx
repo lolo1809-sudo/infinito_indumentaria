@@ -15,8 +15,7 @@ export default function Footer() {
             <div className="space-y-3 text-sm">
               <div className="max-w-[240px]">
                 <span className="text-text-secondary block mb-1">Lunes a Sabado</span>
-                <span className="font-semibold text-text-primary block">10:00 - 13:30</span>
-                <span className="font-semibold text-text-primary block">17:30 - 21:30</span>
+                <span className="font-semibold text-text-primary block">17:30 - 21:00</span>
               </div>
               <div className="max-w-[240px]">
                 <span className="text-text-secondary block mb-1">Domingo</span>
