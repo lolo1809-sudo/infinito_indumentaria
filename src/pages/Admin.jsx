@@ -9,7 +9,7 @@ const CATEGORIAS = [
   { nombre: "Camisas", slug: "camisas" },
   { nombre: "Abrigos", slug: "abrigos" },
   { nombre: "Pantalones", slug: "pantalones" },
-  { nombre: "Sastrería", slug: "sastrería" },
+  { nombre: "Sastrería", slug: "sastreria" },
   { nombre: "Accesorios", slug: "accesorios" },
   { nombre: "Piezas de Plata", slug: "piezas_plata" },
 ];
