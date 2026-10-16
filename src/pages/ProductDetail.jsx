@@ -7,7 +7,7 @@ export default function ProductDetail({ productos = [] }) {
 
   const [indiceActual, setIndiceActual] = useState(0);
 
-  // Buscamos el producto en memoria usando el id de la URL (convertido a número o string según corresponda)
+  // Buscamos el producto en memoria usando el id de la URL
   const producto = productos.find((prod) => String(prod.id) === String(id));
 
   const imagenes = producto?.imgs && Array.isArray(producto.imgs) ? producto.imgs : [];
@@ -35,7 +35,7 @@ export default function ProductDetail({ productos = [] }) {
   }
 
   const numeroTelefono = "2644694044";
-  const mensaje = `¡Hola! Quería consultar disponibilidad y talles de: ${producto.nombre} (${producto.categoria}) - Precio contado: ${producto.precio_contado}.`;
+  const mensaje = `¡Hola! Quería consultar disponibilidad y talles de: ${producto.nombre} (${producto.categoria}) - Precio contado/transferencia: ${producto.precio_contado}.`;
   const whatsappUrl = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
 
   return (
@@ -83,7 +83,10 @@ export default function ProductDetail({ productos = [] }) {
       {/* Información (Derecha) */}
       <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-between overflow-y-auto min-h-[50vh] md:min-h-screen">
         <div>
+          {/* Categoría */}
           <span className="text-text-secondary text-sm font-semibold uppercase tracking-wider block mb-2">{producto.categoria}</span>
+
+          {/* Nombre */}
           <h1 className="text-text-primary font-bold text-3xl md:text-5xl tracking-wide uppercase mb-6">{producto.nombre}</h1>
 
           {/* Talles */}
@@ -100,15 +103,11 @@ export default function ProductDetail({ productos = [] }) {
             </div>
           )}
 
-          {/* Precios */}
+          {/* Precio Contado / Transferencia */}
           <div className="mb-4">
-            <span className="text-text-secondary font-medium line-through text-base block">{producto.precio_lista}</span>
-            <p className="text-accent font-bold text-3xl md:text-4xl">
-              {producto.precio_contado} <span className="text-text-primary text-base font-normal">de Contado</span>
-            </p>
+            <span className="text-xs text-text-secondary font-medium uppercase tracking-wider block mb-1">Precio Contado / Transferencia:</span>
+            <p className="text-accent font-bold text-3xl md:text-4xl">${producto.precio_contado}</p>
           </div>
-
-          <p className="text-text-secondary text-sm">{producto.cuotas}</p>
         </div>
 
         <div className="mt-8">

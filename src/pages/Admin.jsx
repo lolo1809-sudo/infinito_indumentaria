@@ -18,9 +18,7 @@ const ESTADO_INICIAL = {
   nombre: "",
   categoria: "",
   categoria_slug: "",
-  precio_lista: "",
   precio_contado: "",
-  cuotas: "",
   imgs: [],
   destacado: false,
   talles: "",
@@ -51,7 +49,6 @@ export default function Admin() {
       return;
     }
 
-    // 1. Primero buscamos el local que le pertenece a este usuario logueado para obtener su ID
     const { data: localData, error: localError } = await supabase.from("locales").select("id").eq("user_id", user.id).single();
 
     if (localError || !localData) {
@@ -60,7 +57,6 @@ export default function Admin() {
       return;
     }
 
-    // 2. Traemos los productos filtrados por ese local_id
     const { data, error } = await supabase.from("productos").select("*").eq("local_id", localData.id).order("id", { ascending: false });
 
     if (error) {
@@ -79,7 +75,6 @@ export default function Admin() {
     });
   };
 
-  // Maneja la selección de categoría y asigna automáticamente categoria y categoria_slug
   const handleCategoriaChange = (e) => {
     const slugSeleccionado = e.target.value;
     const cat = CATEGORIAS.find((c) => c.slug === slugSeleccionado);
@@ -115,7 +110,6 @@ export default function Admin() {
 
       if (userError || !user) throw new Error("No hay una sesión activa.");
 
-      // Buscamos el local_id correspondiente al usuario actual antes de guardar
       const { data: localData, error: localError } = await supabase.from("locales").select("id").eq("user_id", user.id).single();
 
       if (localError || !localData) throw new Error("No se pudo identificar el local del usuario.");
@@ -144,7 +138,6 @@ export default function Admin() {
 
       const tallesArray = form.talles ? form.talles.split(",").map((t) => t.trim()) : [];
 
-      // Creamos el objeto a enviar
       const productoAEnviar = {
         ...form,
         imgs: urlsFinales,
@@ -210,7 +203,7 @@ export default function Admin() {
       {/* Header */}
       <div className="max-w-6xl mx-auto flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-text-primary font-caveat tracking-wide">Panel de Administración</h1>
+          <h1 className="text-3xl font-bold text-text-primary tracking-wide">Panel de Administración</h1>
           <p className="text-text-secondary text-sm">Gestiona tu catálogo</p>
         </div>
         <button
@@ -237,7 +230,7 @@ export default function Admin() {
               />
             </div>
 
-            {/* Selector único de Categoría */}
+            {/* Selector de Categoría */}
             <div>
               <label className="block text-text-secondary font-semibold mb-1">Categoría</label>
               <select
@@ -258,37 +251,15 @@ export default function Admin() {
               </select>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-text-secondary font-semibold mb-1">Precio Lista</label>
-                <input
-                  name="precio_lista"
-                  value={form.precio_lista}
-                  onChange={handleChange}
-                  required
-                  placeholder="$85.000"
-                  className="w-full bg-bg-custom border border-border text-text-primary rounded-custom px-3 py-2 outline-none focus:border-accent"
-                />
-              </div>
-              <div>
-                <label className="block text-text-secondary font-semibold mb-1">Precio Contado</label>
-                <input
-                  name="precio_contado"
-                  value={form.precio_contado}
-                  onChange={handleChange}
-                  required
-                  placeholder="$70.500"
-                  className="w-full bg-bg-custom border border-border text-text-primary rounded-custom px-3 py-2 outline-none focus:border-accent"
-                />
-              </div>
-            </div>
-
+            {/* Precio único */}
             <div>
-              <label className="block text-text-secondary font-semibold mb-1">Detalle de Cuotas</label>
+              <label className="block text-text-secondary font-semibold mb-1">Precio Contado / Transferencia</label>
               <input
-                name="cuotas"
-                value={form.cuotas}
+                name="precio_contado"
+                value={form.precio_contado}
                 onChange={handleChange}
+                required
+                placeholder="$70.500"
                 className="w-full bg-bg-custom border border-border text-text-primary rounded-custom px-3 py-2 outline-none focus:border-accent"
               />
             </div>
@@ -418,7 +389,6 @@ export default function Admin() {
 
                         <td className="p-4">
                           <p className="text-accent font-bold text-sm">{prod.precio_contado}</p>
-                          <p className="text-text-secondary text-xs line-through">{prod.precio_lista}</p>
                         </td>
 
                         <td className="p-4">
