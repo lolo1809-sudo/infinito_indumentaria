@@ -43,8 +43,8 @@ export default function Header() {
           <a href="/#inicio" onClick={() => setIsOpen(false)} className="text-sm font-bold text-text-primary uppercase tracking-[0.2em] transition-colors duration-200 hover:!text-accent">
             Inicio
           </a>
-          <a href="/#productos" onClick={() => setIsOpen(false)} className="text-sm font-bold text-text-primary uppercase tracking-[0.2em] transition-colors duration-200 hover:!text-accent">
-            Productos
+          <a href="/#ofertas" onClick={() => setIsOpen(false)} className="text-sm font-bold text-text-primary uppercase tracking-[0.2em] transition-colors duration-200 hover:!text-accent">
+            Ofertas
           </a>
           <a href="/#categorias" onClick={() => setIsOpen(false)} className="text-sm font-bold text-text-primary uppercase tracking-[0.2em] transition-colors duration-200 hover:!text-accent">
             Categorías
