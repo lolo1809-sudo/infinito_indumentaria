@@ -9,7 +9,7 @@
   font-display: swap;
 }
 
-/* Temas de colores  */
+/* PALETA DE COLORES  */
 @theme {
   /* Fondos  */
   --color-bg-custom: #ffffff;
@@ -79,4 +79,25 @@ ul {
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--color-accent-hover);
+}
+
+/* ANIMACIONES PARA EL SCROLL INFINITO DE GoogleResenas */
+
+@keyframes scroll-infinito {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-cinta {
+  display: flex;
+  width: max-content;
+  animation: scroll-infinito 50s linear infinite;
+}
+
+.animate-cinta:hover {
+  animation-play-state: paused;
 }

@@ -61,9 +61,9 @@ export default function ProductosDestacados({ productos = [] }) {
 
   // ================= 2. RENDER =============================
   return (
-    <section id="productos" className="w-full bg-bg-custom py-16 px-4">
+    <section id="ofertas" className="w-full bg-bg-custom py-16 px-4">
       <div className="max-w-6xl mx-auto">
-        <SectionTitle texto="PRODUCTOS DESTACADOS" />
+        <SectionTitle texto="OFERTAS" />
 
         <div className="relative">
           {/* Flecha Izquierda */}

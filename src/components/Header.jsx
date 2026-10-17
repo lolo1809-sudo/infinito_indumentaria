@@ -25,8 +25,8 @@ export default function Header() {
           <a href="/#inicio" className="text-base md:text-lg font-bold text-text-primary uppercase tracking-[0.2em] transition-colors duration-200 hover:!text-accent">
             Inicio
           </a>
-          <a href="/#productos" className="text-base md:text-lg font-bold text-text-primary uppercase tracking-[0.2em] transition-colors duration-200 hover:!text-accent">
-            Productos
+          <a href="/#ofertas" className="text-base md:text-lg font-bold text-text-primary uppercase tracking-[0.2em] transition-colors duration-200 hover:!text-accent">
+            Ofertas
           </a>
           <a href="/#categorias" className="text-base md:text-lg font-bold text-text-primary uppercase tracking-[0.2em] transition-colors duration-200 hover:!text-accent">
             Categorías

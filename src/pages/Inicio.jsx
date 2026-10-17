@@ -3,8 +3,9 @@ import Hero from "../components/Hero";
 import ProductosDestacados from "../components/ProductosDestacados";
 import Categorias from "../components/Categorias";
 import Ubicacion from "../components/Ubicacion";
+import GoogleResenas from "../components/GoogleResenas";
 
-export default function Inicio({ productos }) {
+export default function Inicio({ productos, resenas }) {
   return (
     <>
       <Header />
@@ -12,6 +13,7 @@ export default function Inicio({ productos }) {
       <ProductosDestacados productos={productos} />
       <Categorias />
       <Ubicacion />
+      <GoogleResenas resenas={resenas} />
 
       {/* Botón flotante de WhatsApp */}
       <a

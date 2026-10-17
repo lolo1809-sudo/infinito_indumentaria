@@ -20,37 +20,54 @@ import NotFound from "./pages/NotFound";
 
 export default function App() {
   const [productos, setProductos] = useState([]);
+  const [resenas, setResenas] = useState([]);
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-    const cargarProductosDelLocal = async () => {
+    const cargarDatosDelLocal = async () => {
       setCargando(true);
 
-      const currentHost = window.location.hostname.replace(/^www\./, ""); // Ej: "kalmaind.netlify.app" o "localhost"
+      const currentHost = window.location.hostname.replace(/^www\./, "");
 
-      // Consulta cruzando la tabla productos con locales mediante el slug
-      const { data, error } = await supabase
-        .from("productos")
-        .select(
-          `
-          *,
-          locales!inner (
-            slug
+      // Consultas en paralelo para optimizar la carga
+      const [respProductos, respResenas] = await Promise.all([
+        // Trae todos los productos cuyo local_slug sea igual al link de la página actual
+        supabase
+          .from("productos")
+          .select(
+            `
+            *,
+            locales!inner ( slug )
+          `,
           )
-        `,
-        )
-        .eq("locales.slug", currentHost);
+          .eq("locales.slug", currentHost),
 
-      if (!error) {
-        setProductos(data || []);
+        // Trae todas las reseñas cuyo local_slug sea igual al link de la página actual
+        supabase
+          .from("google_resenas")
+          .select(
+            `
+            *,
+            locales!inner ( slug )
+          `,
+          )
+          .eq("locales.slug", currentHost),
+      ]);
+
+      if (!respProductos.error) {
+        setProductos(respProductos.data || []);
       }
+
+      if (!respResenas.error) {
+        setResenas(respResenas.data || []);
+      }
+
       setCargando(false);
     };
 
-    cargarProductosDelLocal();
+    cargarDatosDelLocal();
   }, []);
 
-  // Pantalla de carga...
   if (cargando) {
     return <PantallaCarga />;
   }
@@ -68,7 +85,7 @@ export default function App() {
 
         {/* Rutas públicas */}
         <Route element={<LayoutPublico />}>
-          <Route path="/" element={<Inicio productos={productos} />} />
+          <Route path="/" element={<Inicio productos={productos} resenas={resenas} />} />
           <Route path="/categorias/:categoria" element={<CategoryPage productos={productos} />} />
           <Route path="/producto/:id" element={<ProductDetail productos={productos} />} />
         </Route>
