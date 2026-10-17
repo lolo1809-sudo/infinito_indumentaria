@@ -5,8 +5,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Marca y Resumen */}
           <div className="max-w-sm">
-            <h3 className="text-xl font-extrabold uppercase tracking-widest text-text-primary mb-3">TENUE INDUMENTARIA</h3>
-            <p className="text-sm text-text-secondary leading-relaxed">Prendas urbanas diseñadas para el día a día. Estilo streetwear, calidad premium y lanzamientos exclusivos.</p>
+            <h3 className="text-xl font-extrabold uppercase tracking-widest text-text-primary mb-3">LM INDUMENTARIA DEPORTIVA</h3>
+            <p className="text-sm text-text-secondary leading-relaxed">Indumentaria y accesorios deportivos para entrenar y destacar al máximo. Calidad y rendimiento.</p>
           </div>
 
           {/* Horarios de Atención */}
@@ -15,7 +15,8 @@ export default function Footer() {
             <div className="space-y-3 text-sm">
               <div className="max-w-[240px]">
                 <span className="text-text-secondary block mb-1">Lunes a Sabado</span>
-                <span className="font-semibold text-text-primary block">17:30 - 21:00</span>
+                <span className="font-semibold text-text-primary block">9:00 - 12:30</span>
+                <span className="font-semibold text-text-primary block">16:30 - 20:30</span>
               </div>
               <div className="max-w-[240px]">
                 <span className="text-text-secondary block mb-1">Domingo</span>
@@ -32,7 +33,7 @@ export default function Footer() {
             <div className="flex items-center gap-4">
               {/* Instagram */}
               <a
-                href="https://www.instagram.com/tenue_sj/"
+                href="https://www.instagram.com/indumentariadeportiva_lm/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -47,7 +48,7 @@ export default function Footer() {
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/2644694044?text=Hola!%20Quería%20consultar%20por%20un%20producto."
+                href="https://wa.me/2645621897?text=Hola!%20Quería%20consultar%20por%20un%20producto."
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
@@ -63,8 +64,8 @@ export default function Footer() {
 
         {/* Barra inferior */}
         <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-text-secondary">
-          <p>© {new Date().getFullYear()} Tenue Indumentaria. Todos los derechos reservados.</p>
-          <p className="tracking-wide">Diseñado para la comunidad urbana</p>
+          <p>© {new Date().getFullYear()} LM Indumentaria Deportiva. Todos los derechos reservados.</p>
+          <p className="tracking-wide">Diseñado para la comunidad deportiva</p>
         </div>
       </div>
     </footer>

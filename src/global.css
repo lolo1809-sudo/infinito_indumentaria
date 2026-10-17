@@ -3,7 +3,7 @@
 /* Definición de la fuente personalizada */
 @font-face {
   font-family: "Luckiest Guy";
-  src: url("/CaveatBrush-Regular.ttf") format("truetype");
+  src: url("/RockSalt-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -13,23 +13,23 @@
 @theme {
   /* Fondos  */
   --color-bg-custom: #ffffff;
-  --color-bg-secondary: #f4f4f5;
+  --color-bg-secondary: #f4fbf4;
   --color-bg-card: #ffffff;
-  --color-border: #e4e4e7;
+  --color-border: #d4e7d4;
 
   /* Textos  */
-  --color-text-primary: #18181b;
-  --color-text-secondary: #71717a;
+  --color-text-primary: #111818;
+  --color-text-secondary: #4b5555;
 
-  /* Acentos */
-  --color-accent: #dc2626;
-  --color-accent-hover: #ef4444;
+  /* Acentos  */
+  --color-accent: #84cc16;
+  --color-accent-hover: #65a30d;
 
   /* Otros */
   --radius-custom: 8px;
 
   /* Tipografía */
-  --font-caveat: "Caveat Brush", cursive;
+  --font-rock: "Rock Salt", cursive;
 }
 
 * {

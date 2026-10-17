@@ -34,7 +34,7 @@ export default function ProductDetail({ productos = [] }) {
     );
   }
 
-  const numeroTelefono = "2644694044";
+  const numeroTelefono = "2645621897";
   const mensaje = `¡Hola! Quería consultar disponibilidad y talles de: ${producto.nombre} (${producto.categoria}) - Precio contado/transferencia: ${producto.precio_contado}.`;
   const whatsappUrl = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
 
