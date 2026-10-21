@@ -1,18 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { supabase } from "../supabaseClient";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-
-// Lista centralizada de categorías y sus slugs
-const CATEGORIAS = [
-  { nombre: "Remeras", slug: "remeras" },
-  { nombre: "Camisas", slug: "camisas" },
-  { nombre: "Abrigos", slug: "abrigos" },
-  { nombre: "Pantalones", slug: "pantalones" },
-  { nombre: "Sastrería", slug: "sastreria" },
-  { nombre: "Accesorios", slug: "accesorios" },
-  { nombre: "Piezas de Plata", slug: "piezas_plata" },
-];
+import { CATEGORIAS, supabase } from "../config";
 
 const ESTADO_INICIAL = {
   nombre: "",

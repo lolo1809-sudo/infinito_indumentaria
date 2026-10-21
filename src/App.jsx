@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { supabase } from "./supabaseClient";
+import { supabase } from "./config";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "sonner";
 
@@ -20,6 +20,7 @@ import NotFound from "./pages/NotFound";
 import CarritoProductos from "./pages/CarritoProductos";
 
 export default function App() {
+  const [local, setLocal] = useState(null);
   const [productos, setProductos] = useState([]);
   const [resenas, setResenas] = useState([]);
   const [cargando, setCargando] = useState(true);
@@ -31,8 +32,12 @@ export default function App() {
       const currentHost = window.location.hostname.replace(/^www\./, "");
 
       // Consultas en paralelo para optimizar la carga
-      const [respProductos, respResenas] = await Promise.all([
-        // Trae todos los productos cuyo local_slug sea igual al link de la página actual
+      // Traemos todos los datos tal que el slug del local sea igual al currentHost
+      const [respLocal, respProductos, respResenas] = await Promise.all([
+        // 1. Datos del local
+        supabase.from("locales").select("id, slug, nombre, whatsapp, instagram, ubicacion, descripcion, horarios_atencion").eq("slug", currentHost).maybeSingle(),
+
+        // 2. Productos asociados al local
         supabase
           .from("productos")
           .select(
@@ -43,7 +48,7 @@ export default function App() {
           )
           .eq("locales.slug", currentHost),
 
-        // Trae todas las reseñas cuyo local_slug sea igual al link de la página actual
+        // 3. Reseñas asociadas al local
         supabase
           .from("google_resenas")
           .select(
@@ -54,6 +59,10 @@ export default function App() {
           )
           .eq("locales.slug", currentHost),
       ]);
+
+      if (!respLocal.error && respLocal.data) {
+        setLocal(respLocal.data);
+      }
 
       if (!respProductos.error) {
         setProductos(respProductos.data || []);
@@ -78,18 +87,18 @@ export default function App() {
       <Toaster richColors position="top-right" theme="dark" />
       <ScrollToTop />
       <Routes>
-        {/* Rutas de administrador (privadas), no aparece el Footer */}
+        {/* Rutas de administrador (privadas), NO se muetra el Footer.jsx */}
         <Route path="/login" element={<Login />} />
         <Route element={<RutaProtegida />}>
           <Route path="/admin" element={<Admin />} />
         </Route>
 
-        {/* Rutas públicas, aparece el footer */}
-        <Route element={<LayoutPublico />}>
-          <Route path="/" element={<Inicio productos={productos} resenas={resenas} />} />
+        {/* Rutas públicas, se muestra el Footer.jsx */}
+        <Route element={<LayoutPublico local={local} />}>
+          <Route path="/" element={<Inicio productos={productos} resenas={resenas} local={local} />} />
           <Route path="/categorias/:categoria" element={<CategoryPage productos={productos} />} />
-          <Route path="/producto/:id" element={<ProductDetail productos={productos} />} />
-          <Route path="/carrito" element={<CarritoProductos />} />
+          <Route path="/producto/:id" element={<ProductDetail productos={productos} local={local} />} />
+          <Route path="/carrito" element={<CarritoProductos local={local} />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />

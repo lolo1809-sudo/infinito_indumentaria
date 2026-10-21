@@ -4,6 +4,7 @@ import ProductCard from "../components/ProductCard";
 import SectionTitle from "../components/SectionTitle";
 import EmptyCategory from "../components/EmptyCategory";
 import Sidebar from "../components/Sidebar";
+import { CATEGORIAS } from "../config";
 
 // Función auxiliar para convertir "$68.600" -> 68600
 const parsePrecio = (precioStr) => {
@@ -19,7 +20,7 @@ export default function CategoryPage({ productos = [] }) {
 
   // 1. Filtrar los productos del local según la categoría actual de la URL
   const productosCategoria = useMemo(() => {
-    return productos.filter((prod) => prod.categoria_slug === categoria || prod.categoria?.toLowerCase() === categoria?.toLowerCase());
+    return productos.filter((prod) => prod.categoria_slug === categoria);
   }, [productos, categoria]);
 
   // 2. Extraer todos los talles únicos disponibles en esta categoría
@@ -54,7 +55,9 @@ export default function CategoryPage({ productos = [] }) {
     return resultado;
   }, [productosCategoria, tallesSeleccionados, orden]);
 
-  const tituloFormateado = categoria ? categoria.replace("-", " ").toUpperCase() : "CATEGORÍA";
+  // Buscamos el nombre oficial con acentos y mayúsculas
+  const catEncontrada = CATEGORIAS.find((c) => c.slug === categoria);
+  const tituloFormateado = catEncontrada ? catEncontrada.nombre.toUpperCase() : categoria ? categoria.replace(/[-_]/g, " ").toUpperCase() : "CATEGORÍA";
 
   return (
     <main className="w-full bg-bg-custom py-12 px-4 min-h-screen relative">

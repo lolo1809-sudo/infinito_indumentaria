@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { supabase } from "../supabaseClient";
+import { supabase } from "../config";
 import PantallaCarga from "./PantallaCarga";
 
 export default function RutaProtegida() {

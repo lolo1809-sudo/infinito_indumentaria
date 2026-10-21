@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
-export default function ProductDetail({ productos = [] }) {
+export default function ProductDetail({ productos = [], local }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [indiceActual, setIndiceActual] = useState(0);
   const [talleSeleccionado, setTalleSeleccionado] = useState(null);
-  const [errorTalle, setErrorTalle] = useState(false);
-  const [agregado, setAgregado] = useState(false);
 
   const producto = productos.find((prod) => String(prod.id) === String(id));
   const imagenes = producto?.imgs && Array.isArray(producto.imgs) ? producto.imgs : [];
@@ -36,11 +35,9 @@ export default function ProductDetail({ productos = [] }) {
 
   const handleAgregarAlCarrito = () => {
     if (producto.talles?.length > 0 && !talleSeleccionado) {
-      setErrorTalle(true);
+      toast.error("Por favor seleccioná un talle antes de agregar");
       return;
     }
-
-    setErrorTalle(false);
 
     // 1. Obtener carrito actual
     const carritoActual = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -67,13 +64,11 @@ export default function ProductDetail({ productos = [] }) {
     window.dispatchEvent(new Event("storage_carrito"));
 
     // Feedback visual
-    setAgregado(true);
-    setTimeout(() => setAgregado(false), 2000);
+    toast.success(`"${producto.nombre}" se agregó al carrito`);
   };
 
-  const numeroTelefono = "2645621897";
   const mensaje = `¡Hola! Quería consultar disponibilidad y talles de: ${producto.nombre} (${producto.categoria}) - Precio contado/transferencia: ${producto.precio_contado}.`;
-  const whatsappUrl = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
+  const whatsappUrl = `https://wa.me/${local?.whatsapp}?text=${encodeURIComponent(mensaje)}`;
 
   return (
     <div className="min-h-screen bg-bg-custom flex flex-col md:flex-row relative">
@@ -139,7 +134,6 @@ export default function ProductDetail({ productos = [] }) {
                       type="button"
                       onClick={() => {
                         setTalleSeleccionado(talle);
-                        setErrorTalle(false);
                       }}
                       className={`text-sm font-semibold px-4 py-2 rounded-custom border transition-all cursor-pointer ${
                         isSelected ? "bg-accent text-bg-custom border-accent shadow-xs" : "bg-bg-secondary text-text-primary border-border hover:border-accent"
@@ -150,7 +144,6 @@ export default function ProductDetail({ productos = [] }) {
                   );
                 })}
               </div>
-              {errorTalle && <p className="text-xs text-red-500 font-medium mt-2">Por favor seleccioná un talle antes de agregar.</p>}
             </div>
           )}
 
@@ -169,7 +162,7 @@ export default function ProductDetail({ productos = [] }) {
             onClick={handleAgregarAlCarrito}
             className="w-full bg-accent hover:bg-accent-hover text-bg-custom font-semibold py-3.5 rounded-custom transition-colors cursor-pointer text-center text-base"
           >
-            {agregado ? "¡Agregado al Carrito! ✓" : "Agregar al Carrito"}
+            Agregar al Carrito
           </button>
 
           {/* Botón Consultar por WhatsApp */}

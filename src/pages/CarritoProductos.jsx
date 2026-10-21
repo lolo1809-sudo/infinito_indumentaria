@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import FormularioProducto from "../components/FormularioProducto";
 import EmptyCarrito from "../components/EmptyCarrito";
 
-export default function CarritoProductos() {
+export default function CarritoProductos({ local }) {
   const [carrito, setCarrito] = useState([]);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
 
@@ -67,8 +67,7 @@ export default function CarritoProductos() {
     mensaje += "¿Tienen stock para transferirles?";
 
     // 2. Abrir WhatsApp
-    const numeroTelefono = "2645621897";
-    const whatsappUrl = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
+    const whatsappUrl = `https://wa.me/${local?.whatsapp}?text=${encodeURIComponent(mensaje)}`;
     window.open(whatsappUrl, "_blank");
 
     // 3. Eliminar "carrito" de localStorage una vez abiero WhatsApp

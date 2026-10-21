@@ -1,12 +1,12 @@
-export default function Footer() {
+export default function Footer({ local }) {
   return (
     <footer className="w-full bg-bg-secondary border-t border-border mt-auto">
       <div className="max-w-6xl mx-auto px-4 py-14">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Marca y Resumen */}
           <div className="max-w-sm">
-            <h3 className="text-xl font-extrabold uppercase tracking-widest text-text-primary mb-3">LM INDUMENTARIA DEPORTIVA</h3>
-            <p className="text-sm text-text-secondary leading-relaxed">Indumentaria y accesorios deportivos para entrenar y destacar al máximo. Calidad y rendimiento.</p>
+            <h3 className="text-xl font-extrabold uppercase tracking-widest text-text-primary mb-3">{local?.nombre}</h3>
+            <p className="text-sm text-text-secondary leading-relaxed">{local?.descripcion}</p>
           </div>
 
           {/* Horarios de Atención */}
@@ -14,13 +14,8 @@ export default function Footer() {
             <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-text-primary mb-4">Horarios de Atención</h4>
             <div className="space-y-3 text-sm">
               <div className="max-w-[240px]">
-                <span className="text-text-secondary block mb-1">Lunes a Sabado</span>
-                <span className="font-semibold text-text-primary block">9:00 - 12:30</span>
-                <span className="font-semibold text-text-primary block">16:30 - 20:30</span>
-              </div>
-              <div className="max-w-[240px]">
-                <span className="text-text-secondary block mb-1">Domingo</span>
-                <span className="text-xs uppercase tracking-wider text-text-secondary/70">Cerrado</span>
+                <span className="text-text-secondary block mb-1">Horario</span>
+                <span className="font-semibold text-text-primary block whitespace-pre-line">{local?.horarios_atencion || "Consultar horarios"}</span>
               </div>
             </div>
           </div>
@@ -33,7 +28,7 @@ export default function Footer() {
             <div className="flex items-center gap-4">
               {/* Instagram */}
               <a
-                href="https://www.instagram.com/indumentariadeportiva_lm/"
+                href={local?.instagram?.startsWith("http") ? local.instagram : `https://instagram.com/${local?.instagram}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -48,7 +43,7 @@ export default function Footer() {
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/2645621897?text=Hola!%20Quería%20consultar%20por%20un%20producto."
+                href={`https://wa.me/${local?.whatsapp}?text=Hola!%20Quería%20consultar%20por%20un%20producto.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
@@ -64,10 +59,15 @@ export default function Footer() {
 
         {/* Barra inferior */}
         <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-text-secondary">
-          <p>© {new Date().getFullYear()} LM Indumentaria Deportiva. Todos los derechos reservados.</p>
-          <p className="tracking-wide">Diseñado para la comunidad deportiva</p>
+          <p>
+            © {new Date().getFullYear()} {local?.nombre}. Todos los derechos reservados.
+          </p>
+          <p className="tracking-wide">Diseñado y adaptado para vos</p>
         </div>
       </div>
     </footer>
   );
 }
+
+
+

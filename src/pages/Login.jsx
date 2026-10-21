@@ -1,7 +1,7 @@
 // No se permite el registro ni la eliminación de cuenta, eso lo manejo yo en Supabase
 
 import { useState, useEffect } from "react";
-import { supabase } from "../supabaseClient";
+import { supabase } from "../config";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
