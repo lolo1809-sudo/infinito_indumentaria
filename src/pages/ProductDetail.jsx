@@ -6,13 +6,13 @@ export default function ProductDetail({ productos = [] }) {
   const navigate = useNavigate();
 
   const [indiceActual, setIndiceActual] = useState(0);
+  const [talleSeleccionado, setTalleSeleccionado] = useState(null);
+  const [errorTalle, setErrorTalle] = useState(false);
+  const [agregado, setAgregado] = useState(false);
 
-  // Buscamos el producto en memoria usando el id de la URL
   const producto = productos.find((prod) => String(prod.id) === String(id));
-
   const imagenes = producto?.imgs && Array.isArray(producto.imgs) ? producto.imgs : [];
 
-  // Carrusel automático cada 5 segundos
   useEffect(() => {
     if (imagenes.length <= 1) return;
 
@@ -27,12 +27,49 @@ export default function ProductDetail({ productos = [] }) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-bg-custom text-text-primary gap-4">
         <p>Producto no encontrado.</p>
-        <button onClick={() => navigate(-1)} className="bg-accent text-white px-4 py-2 rounded-custom">
+        <button onClick={() => navigate(-1)} className="bg-accent text-white px-4 py-2 rounded-custom cursor-pointer">
           Volver
         </button>
       </div>
     );
   }
+
+  const handleAgregarAlCarrito = () => {
+    if (producto.talles?.length > 0 && !talleSeleccionado) {
+      setErrorTalle(true);
+      return;
+    }
+
+    setErrorTalle(false);
+
+    // 1. Obtener carrito actual
+    const carritoActual = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    // 2. Comprobar si ya existe el mismo producto con el mismo talle
+    const indexExistente = carritoActual.findIndex((item) => item.id === producto.id && item.talle === talleSeleccionado);
+
+    if (indexExistente !== -1) {
+      carritoActual[indexExistente].cantidad += 1;
+    } else {
+      carritoActual.push({
+        id: producto.id,
+        nombre: producto.nombre,
+        categoria: producto.categoria,
+        precio: producto.precio_contado,
+        img: imagenes[0] || "/placeholder.webp",
+        talle: talleSeleccionado || "Único",
+        cantidad: 1,
+      });
+    }
+
+    // 3. Guardar en localStorage y disparar evento para actualizar otros componentes
+    localStorage.setItem("carrito", JSON.stringify(carritoActual));
+    window.dispatchEvent(new Event("storage_carrito"));
+
+    // Feedback visual
+    setAgregado(true);
+    setTimeout(() => setAgregado(false), 2000);
+  };
 
   const numeroTelefono = "2645621897";
   const mensaje = `¡Hola! Quería consultar disponibilidad y talles de: ${producto.nombre} (${producto.categoria}) - Precio contado/transferencia: ${producto.precio_contado}.`;
@@ -48,7 +85,7 @@ export default function ProductDetail({ productos = [] }) {
         ✕
       </button>
 
-      {/* Carrusel de Imágenes (Izquierda) */}
+      {/* Carrusel de Imágenes */}
       <div className="relative w-full md:w-1/2 h-[50vh] md:h-screen bg-bg-secondary flex items-center justify-center">
         <img
           src={imagenes[indiceActual] || "/placeholder.webp"}
@@ -80,7 +117,7 @@ export default function ProductDetail({ productos = [] }) {
         )}
       </div>
 
-      {/* Información (Derecha) */}
+      {/* Información */}
       <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-between overflow-y-auto min-h-[50vh] md:min-h-screen">
         <div>
           {/* Categoría */}
@@ -92,30 +129,55 @@ export default function ProductDetail({ productos = [] }) {
           {/* Talles */}
           {producto.talles && producto.talles.length > 0 && (
             <div className="mb-6">
-              <span className="text-xs text-text-secondary font-medium uppercase tracking-wider block mb-2">Talles disponibles:</span>
+              <span className="text-xs text-text-secondary font-medium uppercase tracking-wider block mb-2">Seleccioná tu talle:</span>
               <div className="flex flex-wrap items-center gap-2">
-                {producto.talles.map((talle) => (
-                  <span key={talle} className="text-sm font-semibold px-4 py-1.5 border border-border text-text-primary rounded-custom bg-bg-secondary">
-                    {talle}
-                  </span>
-                ))}
+                {producto.talles.map((talle) => {
+                  const isSelected = talleSeleccionado === talle;
+                  return (
+                    <button
+                      key={talle}
+                      type="button"
+                      onClick={() => {
+                        setTalleSeleccionado(talle);
+                        setErrorTalle(false);
+                      }}
+                      className={`text-sm font-semibold px-4 py-2 rounded-custom border transition-all cursor-pointer ${
+                        isSelected ? "bg-accent text-bg-custom border-accent shadow-xs" : "bg-bg-secondary text-text-primary border-border hover:border-accent"
+                      }`}
+                    >
+                      {talle}
+                    </button>
+                  );
+                })}
               </div>
+              {errorTalle && <p className="text-xs text-red-500 font-medium mt-2">Por favor seleccioná un talle antes de agregar.</p>}
             </div>
           )}
 
-          {/* Precio Contado / Transferencia */}
+          {/* Precio */}
           <div className="mb-4">
             <span className="text-xs text-text-secondary font-medium uppercase tracking-wider block mb-1">Precio Contado / Transferencia:</span>
             <p className="text-accent font-bold text-3xl md:text-4xl">${producto.precio_contado}</p>
           </div>
         </div>
 
-        <div className="mt-8">
+        {/* Acciones */}
+        <div className="mt-8 flex flex-col gap-3">
+          {/* Botón Agregar al Carrito */}
+          <button
+            type="button"
+            onClick={handleAgregarAlCarrito}
+            className="w-full bg-accent hover:bg-accent-hover text-bg-custom font-semibold py-3.5 rounded-custom transition-colors cursor-pointer text-center text-base"
+          >
+            {agregado ? "¡Agregado al Carrito! ✓" : "Agregar al Carrito"}
+          </button>
+
+          {/* Botón Consultar por WhatsApp */}
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center w-full bg-accent hover:bg-accent-hover text-bg-custom font-semibold py-3.5 rounded-custom transition-colors cursor-pointer text-center text-base"
+            className="inline-flex items-center justify-center w-full bg-bg-secondary hover:bg-border text-text-primary font-semibold py-3.5 rounded-custom border border-border transition-colors cursor-pointer text-center text-base"
           >
             Consultar por WhatsApp
           </a>

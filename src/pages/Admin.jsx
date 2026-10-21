@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { supabase } from "../supabaseClient";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -31,7 +31,9 @@ export default function Admin() {
   const [form, setForm] = useState(ESTADO_INICIAL);
   const [editandoId, setEditandoId] = useState(null);
   const [archivosSeleccionados, setArchivosSeleccionados] = useState([]);
+  const [imagenesAEliminar, setImagenesAEliminar] = useState([]);
 
+  const fileInputRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -96,6 +98,8 @@ export default function Admin() {
       ...form,
       imgs: form.imgs.filter((url) => url !== urlAEliminar),
     });
+    // La agregamos a la lista de "pendientes por borrar del storage"
+    setImagenesAEliminar((prev) => [...prev, urlAEliminar]);
   };
 
   const manejarSubmit = async (e) => {
@@ -147,20 +151,40 @@ export default function Admin() {
       };
 
       if (editandoId) {
+        // 1. Actualizamos en la base de datos
         const { error } = await supabase.from("productos").update(productoAEnviar).eq("id", editandoId);
 
         if (error) throw error;
+
+        // 2. Borramos del Storage las imágenes que el usuario quitó
+        if (imagenesAEliminar.length > 0) {
+          const rutasAEliminar = imagenesAEliminar
+            .map((url) => {
+              const ruta = url.split("productos-imagenes/")[1];
+              return ruta ? decodeURIComponent(ruta.split("?")[0]) : null;
+            })
+            .filter(Boolean);
+
+          if (rutasAEliminar.length > 0) {
+            const { error: errorStorage } = await supabase.storage.from("productos-imagenes").remove(rutasAEliminar);
+
+            if (errorStorage) console.error("Error limpiando storage:", errorStorage);
+          }
+        }
+
         toast.success("Producto actualizado correctamente");
       } else {
         const { error } = await supabase.from("productos").insert([productoAEnviar]);
-
         if (error) throw error;
         toast.success("Producto creado correctamente");
       }
 
+      // LIMPIEZA FINAL
       setForm(ESTADO_INICIAL);
       setArchivosSeleccionados([]);
+      setImagenesAEliminar([]);
       setEditandoId(null);
+      if (fileInputRef.current) fileInputRef.current.value = "";
       obtenerProductos();
     } catch (error) {
       toast.error("Error al guardar: " + error.message);
@@ -176,20 +200,54 @@ export default function Admin() {
       talles: producto.talles ? producto.talles.join(", ") : "",
     });
     setArchivosSeleccionados([]);
+    setImagenesAEliminar([]);
     setEditandoId(producto.id);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const eliminarProducto = async (id) => {
-    if (!window.confirm("¿Seguro que deseas eliminar este producto?")) return;
+  const ejecutarEliminacion = async (producto) => {
+    try {
+      // 1. Borrar las imágenes del Storage (si tiene)
+      if (producto.imgs && producto.imgs.length > 0) {
+        // Extraemos solo la ruta del archivo de la URL pública
+        // Ejemplo: cortamos la url en "productos-imagenes/" y nos quedamos con lo de la derecha (user_id/archivo.jpg)
+        const rutasAEliminar = producto.imgs
+          .map((url) => {
+            const ruta = url.split("productos-imagenes/")[1];
+            return ruta ? decodeURIComponent(ruta.split("?")[0]) : null;
+          })
+          .filter(Boolean);
 
-    const { error } = await supabase.from("productos").delete().eq("id", id);
-    if (error) {
-      toast.error("Error al eliminar");
-    } else {
-      toast.success("Producto eliminado");
+        if (rutasAEliminar.length > 0) {
+          const { error: errorStorage } = await supabase.storage.from("productos-imagenes").remove(rutasAEliminar);
+
+          if (errorStorage) console.error("No se pudieron borrar algunas imágenes del storage:", errorStorage);
+        }
+      }
+
+      // 2. Borrar el producto de la base de datos
+      const { error } = await supabase.from("productos").delete().eq("id", producto.id);
+
+      if (error) throw error;
+
+      toast.success("Producto y sus imágenes eliminados");
       obtenerProductos();
+    } catch (error) {
+      toast.error("Error al eliminar: " + error.message);
     }
+  };
+
+  const eliminarProducto = (producto) => {
+    toast("¿Seguro que deseas eliminar este producto?", {
+      duration: Infinity,
+      action: {
+        label: "Eliminar",
+        onClick: () => ejecutarEliminacion(producto),
+      },
+      cancel: {
+        label: "Cancelar",
+      },
+    });
   };
 
   const cerrarSesion = async () => {
@@ -268,6 +326,7 @@ export default function Admin() {
             <div>
               <label className="block text-text-secondary font-semibold mb-1">Imágenes del Producto</label>
               <input
+                ref={fileInputRef}
                 type="file"
                 accept="image/*"
                 multiple
@@ -332,6 +391,8 @@ export default function Admin() {
                     setForm(ESTADO_INICIAL);
                     setEditandoId(null);
                     setArchivosSeleccionados([]);
+                    setImagenesAEliminar([]);
+                    if (fileInputRef.current) fileInputRef.current.value = "";
                   }}
                   className="px-4 bg-bg-secondary text-text-primary font-semibold rounded-custom border border-border hover:bg-border transition-colors cursor-pointer"
                 >
@@ -404,7 +465,7 @@ export default function Admin() {
                               Editar
                             </button>
                             <button
-                              onClick={() => eliminarProducto(prod.id)}
+                              onClick={() => eliminarProducto(prod)}
                               className="text-accent hover:text-white hover:bg-accent transition-colors cursor-pointer text-sm font-semibold px-2 py-1 bg-accent/10 border border-accent/20 rounded-md"
                             >
                               Borrar

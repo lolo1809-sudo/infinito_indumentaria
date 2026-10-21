@@ -17,6 +17,7 @@ import CategoryPage from "./pages/CategoryPage";
 import Admin from "./pages/Admin";
 import ProductDetail from "./pages/ProductDetail";
 import NotFound from "./pages/NotFound";
+import CarritoProductos from "./pages/CarritoProductos";
 
 export default function App() {
   const [productos, setProductos] = useState([]);
@@ -77,17 +78,18 @@ export default function App() {
       <Toaster richColors position="top-right" theme="dark" />
       <ScrollToTop />
       <Routes>
-        {/* Rutas de administrador (privadas) */}
+        {/* Rutas de administrador (privadas), no aparece el Footer */}
         <Route path="/login" element={<Login />} />
         <Route element={<RutaProtegida />}>
           <Route path="/admin" element={<Admin />} />
         </Route>
 
-        {/* Rutas públicas */}
+        {/* Rutas públicas, aparece el footer */}
         <Route element={<LayoutPublico />}>
           <Route path="/" element={<Inicio productos={productos} resenas={resenas} />} />
           <Route path="/categorias/:categoria" element={<CategoryPage productos={productos} />} />
           <Route path="/producto/:id" element={<ProductDetail productos={productos} />} />
+          <Route path="/carrito" element={<CarritoProductos />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
